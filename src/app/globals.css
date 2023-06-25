@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+}
+
+.copy-button {
+  display: flex;
+  align-items: center;
+}
+
+.card__mainImage {
+  flex: 0 0 290px;
+  height: 190px;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 1px;
+}
