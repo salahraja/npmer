@@ -42,9 +42,11 @@ export default function HankoProfile() {
   return (
     <>
       <button onClick={logout}>Logout</button>
-      <hanko-profile
-        className={`${styles.hankoProfile} ${styles.blackBackground}`}
-      />{" "}
+      <div className="hanko_container">
+        <hanko-profile
+          className={`${styles.hankoProfile} ${styles.blackBackground}`}
+        />{" "}
+      </div>
       {/* Apply CSS classes */}
     </>
   );

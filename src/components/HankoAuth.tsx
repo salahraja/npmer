@@ -33,11 +33,12 @@ export default function HankoAuth({ setError }: HankoAuthProps) {
   );
 
   useEffect(() => {
-    // register the component
-    // see: https://github.com/teamhanko/hanko/blob/main/frontend/elements/README.md#script
-    register(hankoApi).catch((error) => {
-      setError(error);
-    });
+    // register the component with shadow option
+    register(hankoApi, { shadow: false, injectStyles: false }).catch(
+      (error) => {
+        setError(error);
+      }
+    );
   }, [setError]);
 
   return <hanko-auth />;

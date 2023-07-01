@@ -34,11 +34,13 @@ export default function Home() {
       </div>
 
       <Suspense fallback="Loading HankoAuth...">
-        <HankoAuth
-          setError={function (error: Error): void {
-            throw new Error("Function not implemented.");
-          }}
-        />
+        <div className="hanko_container">
+          <HankoAuth
+            setError={function (error: Error): void {
+              throw new Error("Function not implemented.");
+            }}
+          />
+        </div>
       </Suspense>
 
       <h1 className="text-5xl md:text-8xl font-extrabold text-center max-w-6xl">
