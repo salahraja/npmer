@@ -30,7 +30,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "server.ts"
+    "server.ts",
+    "supabase.ts"
   ],
   "exclude": ["node_modules"]
 }
