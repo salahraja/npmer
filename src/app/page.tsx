@@ -26,7 +26,7 @@ export default function Home() {
         <Image
           className="dark:invert"
           src="/npm.png"
-          alt="npm Logo with a dark mode toggle right above it"
+          alt="npm Logo with a dark mode toggle right above it to toggle"
           width={180}
           height={37}
           priority
