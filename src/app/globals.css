@@ -24,17 +24,33 @@
   border-radius: 1px;
 }
 
-.hanko_container {
-  background-color: black;
-  padding: var(--container-padding, 0);
-  max-width: var(--container-max-width, 600px);
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: flex-start;
-  box-sizing: border-box;
+hanko-auth,
+hanko-profile {
+  /* Color Scheme */
+  --color: black;
+  --color-shade-1: #8f9095;
+  --color-shade-2: #e5e6ef;
+
+  --brand-color: #506cf0;
+  --brand-color-shade-1: #6b84fb;
+  --brand-contrast-color: white;
+
+  --background-color: white;
+  --error-color: #e82020;
+  --link-color: #506cf0;
+
+  /* Headline Styles */
+  --headline1-font-size: 24px;
+  --headline1-font-weight: 600;
+  --headline1-margin: 0 0 0.5rem;
+
+  --headline2-font-size: 14px;
+  --headline2-font-weight: 600;
+  --headline2-margin: 1rem 0 0.25rem;
+
+  @media (prefers-color-scheme: dark) {
+    --color: #506cf0;
+  }
 }
 
 .hanko_content {
@@ -290,7 +306,7 @@
   display: inline-flex;
   align-items: center;
   height: 100%;
-  margin: 0 5px;
+  margin: 1px 5px;
 }
 
 .hanko_loadingSpinnerWrapper .hanko_loadingSpinner,

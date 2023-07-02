@@ -1,5 +1,5 @@
 "use client";
-import { ThemeSwitcher } from "@components/client/theme-swither";
+import { ThemeSwitcher } from "@components/client/ThemeSwitcher";
 import { Theme } from "@types";
 import { useRouter } from "next/navigation";
 import { parseCookies } from "nookies";
@@ -39,6 +39,7 @@ export default function Home() {
             setError={function (error: Error): void {
               throw new Error("Function not implemented.");
             }}
+            darkTheme={false}
           />
         </div>
       </Suspense>

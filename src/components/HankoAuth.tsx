@@ -6,9 +6,10 @@ const hankoApi = "https://007385dc-60c3-4e38-bd4d-14dc24193b70.hanko.io";
 
 interface HankoAuthProps {
   setError: (error: Error) => void;
+  darkTheme: boolean;
 }
 
-export default function HankoAuth({ setError }: HankoAuthProps) {
+export default function HankoAuth({ setError, darkTheme }: HankoAuthProps) {
   const router = useRouter();
 
   const [hanko, setHanko] = useState<Hanko>();
@@ -41,5 +42,9 @@ export default function HankoAuth({ setError }: HankoAuthProps) {
     );
   }, [setError]);
 
-  return <hanko-auth />;
+  return (
+    <div className={darkTheme ? "hanko_container dark" : "hanko_container"}>
+      <hanko-auth />
+    </div>
+  );
 }
