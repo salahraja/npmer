@@ -1,40 +1,28 @@
 import express from "express";
-import fetch from "node-fetch";
 
+// Import necessary libraries
+const { Hanko } = require("@teamhanko/hanko-elements");
+const supabase = require("supabase"); // Replace with your Supabase library and configuration
 const app = express();
-const port = 4000;
-const { packageNames, commands } = req.body;
+// Create a new instance of Hanko
+const hankoApi = "https://007385dc-60c3-4e38-bd4d-14dc24193b70.hanko.io";
+const hanko = new Hanko(hankoApi);
 
-app.use(express.json());
-
-app.get("/", (req, res) => {
-  res.send("Hello, world!");
-});
-
-app.post("/packages", async (req, res) => {
-  const { packageNames } = req.body;
-
+// Authentication endpoint
+app.post("/authenticate", async (req, res) => {
   try {
-    const packageDetails = await Promise.all(
-      packageNames.map(async (packageName) => {
-        const response = await fetch(
-          `https://registry.npmjs.org/${packageName}`
-        );
-        const data = await response.json();
-        return data;
-      })
-    );
+    // Get the authentication data from the request body
+    const { authenticationData } = req.body;
 
-    console.log(packageDetails); // Log the received package details
+    // Perform authentication using Hanko and Supabase
+    // Replace with your authentication logic
+    const authenticated = await hanko.authenticate(authenticationData);
+    const user = await supabase.authenticate(authenticated.userId);
 
-    res.json(packageDetails);
+    // Handle successful authentication
+    res.status(200).json({ success: true, user });
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "An error occurred while fetching package details." });
+    // Handle authentication error
+    res.status(400).json({ success: false, error: error.message });
   }
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
 });

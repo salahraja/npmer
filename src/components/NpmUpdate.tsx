@@ -43,10 +43,11 @@ export default function App() {
     },
   ];
 
-  const handleCopy = (text: string, rowKey: string) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
+  const handleCopy = async (text: string, rowKey: string) => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        console.log("Text copied:", text);
         const updatedRows = rows.map((row) => {
           if (row.key === rowKey) {
             return { ...row, copied: true };
@@ -64,10 +65,12 @@ export default function App() {
           });
           setRows(resetRows);
         }, 2000);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Failed to copy text:", error);
-      });
+      }
+    } else {
+      console.log("Copy text using alternative method");
+    }
   };
 
   const [rows, setRows] = useState(initialRows);
@@ -111,7 +114,6 @@ export default function App() {
             {rows.map((item: RowItem) => (
               <Table.Row key={item.key}>
                 {columns.map((column) => (
-                  // ...
                   <Table.Cell
                     key={column.key}
                     css={{
@@ -135,7 +137,7 @@ export default function App() {
                       {item.copyable && (
                         <CopyButton
                           text={item.directions}
-                          onCopy={(text) => handleCopy(text, item.key)}
+                          onCopy={() => handleCopy(item.directions, item.key)}
                         />
                       )}
                     </div>

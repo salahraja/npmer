@@ -1,5 +1,4 @@
-"use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, Grid, Text, Table, Spacer } from "@nextui-org/react";
 import "src/app/globals.css";
 import CopyButton from "./CopyButton";
@@ -10,10 +9,9 @@ interface RowItem {
   directions: string;
   status: string;
   copyable?: boolean;
-  copied?: boolean;
 }
 
-export default function App() {
+export default function MobileQr() {
   const columns = [
     {
       key: "role",
@@ -43,18 +41,41 @@ export default function App() {
     },
   ];
 
-  const handleCopy = (text: string) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        console.log("Text copied:", text);
-      })
-      .catch((error) => {
-        console.error("Failed to copy text:", error);
-      });
-  };
-
   const [rows, setRows] = useState(initialRows);
+
+  useEffect(() => {
+    const handleCopy = async () => {
+      const textToCopy = "npx localview --port 3000";
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(textToCopy);
+          console.log("Text copied:", textToCopy);
+          setRows((prevRows) =>
+            prevRows.map((row) => {
+              if (row.directions === textToCopy) {
+                return { ...row, copied: true };
+              }
+              return row;
+            })
+          );
+        } catch (error) {
+          console.error("Failed to copy text:", error);
+        }
+      } else {
+        console.log("Copy text using alternative method");
+      }
+    };
+
+    setRows((prevRows) => prevRows.map((row) => ({ ...row, copied: false })));
+
+    return () => {
+      setRows((prevRows) => prevRows.map((row) => ({ ...row, copied: false })));
+    };
+  }, []);
+
+  function handleCopy(text: string): void {
+    throw new Error("Function not implemented.");
+  }
 
   return (
     <Card

@@ -306,7 +306,7 @@ hanko-profile {
   display: inline-flex;
   align-items: center;
   height: 100%;
-  margin: 1px 5px;
+  margin: 5px 5px;
 }
 
 .hanko_loadingSpinnerWrapper .hanko_loadingSpinner,

@@ -1,4 +1,6 @@
 "use client";
+import supabase from "@supabase/supabase";
+import { createClient } from "@supabase/supabase-js";
 import { ThemeSwitcher } from "@components/client/ThemeSwitcher";
 import { Theme } from "@types";
 import { useRouter } from "next/navigation";
@@ -7,7 +9,7 @@ import Image from "next/image";
 import * as React from "react";
 import { NextUIProvider } from "@nextui-org/react";
 import TextBox from "@components/client/TextBox";
-import NpmUpdate from "@components/client/NpmUpdate";
+import NpmUpdate from "@components/NpmUpdate";
 import MobileQr from "@components/MobileQr";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
@@ -17,6 +19,10 @@ export default function Home() {
   const cookies = parseCookies();
   const theme = cookies?.theme === "dark" ? Theme.dark : Theme.light;
   const router = useRouter();
+  const supabaseUrl = "https://xfqearusvtluyszpicux.supabase.co";
+  const supabaseKey =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhmcWVhcnVzdnRsdXlzenBpY3V4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY4NzcwODM3OSwiZXhwIjoyMDAzMjg0Mzc5fQ.EEl51ughto0kI1mLIumBb0zraZIUGwm-ZK_tiA8SAZQ";
+  const supabase = createClient(supabaseUrl, supabaseKey);
 
   return (
     <main className="grid place-items-center h-full p-10">
@@ -26,7 +32,7 @@ export default function Home() {
         <Image
           className="dark:invert"
           src="/npm.png"
-          alt="npm Logo with a dark mode toggle right above it to toggle"
+          alt="npm Logo with a dark mode toggle right above it"
           width={180}
           height={37}
           priority
