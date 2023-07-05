@@ -52,11 +52,12 @@ export default function MobileQr() {
   }, []);
 
   function handleCopy(text: string): void {
+    const copyText = "npx localview --port 3000";
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard
-        .writeText(text)
+        .writeText(copyText)
         .then(() => {
-          console.log("Text copied:", text);
+          console.log("Text copied:", copyText);
         })
         .catch((error) => {
           console.error("Failed to copy text:", error);
