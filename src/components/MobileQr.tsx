@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Key } from "react";
 import { Card, Grid, Text, Table, Spacer } from "@nextui-org/react";
 import "src/app/globals.css";
 import CopyButton from "./CopyButton";
@@ -44,28 +44,6 @@ export default function MobileQr() {
   const [rows, setRows] = useState(initialRows);
 
   useEffect(() => {
-    const handleCopy = async () => {
-      const textToCopy = "npx localview --port 3000";
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        try {
-          await navigator.clipboard.writeText(textToCopy);
-          console.log("Text copied:", textToCopy);
-          setRows((prevRows) =>
-            prevRows.map((row) => {
-              if (row.directions === textToCopy) {
-                return { ...row, copied: true };
-              }
-              return row;
-            })
-          );
-        } catch (error) {
-          console.error("Failed to copy text:", error);
-        }
-      } else {
-        console.log("Copy text using alternative method");
-      }
-    };
-
     setRows((prevRows) => prevRows.map((row) => ({ ...row, copied: false })));
 
     return () => {
@@ -74,7 +52,18 @@ export default function MobileQr() {
   }, []);
 
   function handleCopy(text: string): void {
-    throw new Error("Function not implemented.");
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          console.log("Text copied:", text);
+        })
+        .catch((error) => {
+          console.error("Failed to copy text:", error);
+        });
+    } else {
+      console.log("Copy text using alternative method");
+    }
   }
 
   return (
@@ -82,7 +71,7 @@ export default function MobileQr() {
       css={{
         p: "$6",
         minWidth: "60%",
-        mh: "auto",
+        mh: "100%",
         fs: "$xl",
         whiteSpace: "nowrap",
         overflow: "hidden",
@@ -108,7 +97,7 @@ export default function MobileQr() {
           }}
         >
           <Table.Header columns={columns}>
-            {(column) => (
+            {(column: { key: Key | null | undefined; label: any }) => (
               <Table.Column key={column.key}>{column.label}</Table.Column>
             )}
           </Table.Header>

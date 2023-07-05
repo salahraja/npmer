@@ -1,6 +1,4 @@
 "use client";
-import supabase from "@supabase/supabase";
-import { createClient } from "@supabase/supabase-js";
 import { ThemeSwitcher } from "@components/client/ThemeSwitcher";
 import { Theme } from "@types";
 import { useRouter } from "next/navigation";
@@ -8,27 +6,28 @@ import { parseCookies } from "nookies";
 import Image from "next/image";
 import * as React from "react";
 import { NextUIProvider } from "@nextui-org/react";
-import TextBox from "@components/client/TextBox";
+import TextBox from "@components/TextBox";
 import NpmUpdate from "@components/NpmUpdate";
 import MobileQr from "@components/MobileQr";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import HankoAuth from "@components/HankoAuth";
+import Head from "next/head";
 
 export default function Home() {
   const cookies = parseCookies();
   const theme = cookies?.theme === "dark" ? Theme.dark : Theme.light;
   const router = useRouter();
-  const supabaseUrl = "https://xfqearusvtluyszpicux.supabase.co";
-  const supabaseKey =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhmcWVhcnVzdnRsdXlzenBpY3V4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY4NzcwODM3OSwiZXhwIjoyMDAzMjg0Mzc5fQ.EEl51ughto0kI1mLIumBb0zraZIUGwm-ZK_tiA8SAZQ";
-  const supabase = createClient(supabaseUrl, supabaseKey);
 
   return (
     <main className="grid place-items-center h-full p-10">
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+
       <ThemeSwitcher theme={theme} />
 
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center w-full">
         <Image
           className="dark:invert"
           src="/npm.png"
@@ -50,18 +49,19 @@ export default function Home() {
         </div>
       </Suspense>
 
-      <h1 className="text-5xl md:text-8xl font-extrabold text-center max-w-6xl">
+      <h1 className="text-2xl md:text-5xl font-extrabold text-center max-w-6xl pt-3">
         Saving your favorite npm package since 1948.
       </h1>
 
-      <div className="flex flex-col md:flex-row gap-2">
-        <div className="flex-grow order-2 md:order-1">
+      <div className="w-5/6 py-5 flex justify-center items-center">
+        <TextBox />
+      </div>
+
+      <div className="flex flex-col md:flex-row gap-2 items-center">
+        <div className="flex-grow">
           <NpmUpdate />
         </div>
-        <div className="flex-grow order-1 md:order-2">
-          <TextBox />
-        </div>
-        <div className="flex-grow order-3">
+        <div className="flex-grow">
           <MobileQr />
         </div>
       </div>

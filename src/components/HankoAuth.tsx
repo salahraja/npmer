@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { register, Hanko } from "@teamhanko/hanko-elements";
+import styles from "./HankoProfile.module.css"; // Import CSS module
 
 const hankoApi = "https://007385dc-60c3-4e38-bd4d-14dc24193b70.hanko.io";
 
