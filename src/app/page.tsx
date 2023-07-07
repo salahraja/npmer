@@ -10,14 +10,25 @@ import TextBox from "@components/TextBox";
 import NpmUpdate from "@components/NpmUpdate";
 import MobileQr from "@components/MobileQr";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import HankoAuth from "@components/HankoAuth";
 import Head from "next/head";
+import "react-medium-image-zoom/dist/styles.css";
+
+const Zoom = dynamic(() => import("react-medium-image-zoom"), {
+  ssr: false,
+});
 
 export default function Home() {
   const cookies = parseCookies();
   const theme = cookies?.theme === "dark" ? Theme.dark : Theme.light;
   const router = useRouter();
+
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <main className="grid place-items-center h-full p-10">

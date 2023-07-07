@@ -52,12 +52,16 @@ export default function MobileQr() {
   }, []);
 
   function handleCopy(text: string): void {
-    const copyText = "npx localview --port 3000";
     if (navigator.clipboard && navigator.clipboard.writeText) {
+      const copyText = "npx localview --port 3000";
       navigator.clipboard
         .writeText(copyText)
         .then(() => {
           console.log("Text copied:", copyText);
+          setCopied(true);
+          setTimeout(() => {
+            setCopied(false);
+          }, 2000); // Reset to "Copy" after 2 seconds (adjust the time as needed)
         })
         .catch((error) => {
           console.error("Failed to copy text:", error);
@@ -71,7 +75,8 @@ export default function MobileQr() {
     <Card
       css={{
         p: "$6",
-        minWidth: "60%",
+        minWidth: "100%",
+        width: "auto",
         mh: "100%",
         fs: "$xl",
         whiteSpace: "nowrap",
@@ -128,4 +133,7 @@ export default function MobileQr() {
       </Card.Body>
     </Card>
   );
+}
+function setCopied(arg0: boolean) {
+  throw new Error("Function not implemented.");
 }

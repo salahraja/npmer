@@ -78,8 +78,8 @@ export default function App() {
   return (
     <Card
       css={{
-        p: "$3",
-        minWidth: "60%",
+        minWidth: "100%",
+        width: "auto",
         margin: "auto",
         mh: "auto",
         fs: "$xl",

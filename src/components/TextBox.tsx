@@ -16,7 +16,7 @@ export default function TextBox() {
         fs: "auto",
         display: "flex",
         flexDirection: "column",
-        width: "75%",
+        width: "100%",
       }}
     >
       <Card.Header>

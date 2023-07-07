@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
+import Head from "next/head";
 import "./globals.css";
-import { NextUIProvider } from "@nextui-org/react";
 
 export const metadata = {
   title: "Npmer",
@@ -16,7 +16,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={theme?.value}>
-      <body className="bg-white text-black dark:bg-black dark:text-white transition duration-700">
+      <body className="bg-white text-black dark:bg-black dark:text-white transition duration-700 sm:text-red-500">
         {children}
       </body>
     </html>
