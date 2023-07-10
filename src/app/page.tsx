@@ -22,7 +22,6 @@ const Zoom = dynamic(() => import("react-medium-image-zoom"), {
 export default function Home() {
   const cookies = parseCookies();
   const theme = cookies?.theme === "dark" ? Theme.dark : Theme.light;
-  const router = useRouter();
 
   const [isClient, setIsClient] = useState(false);
 
@@ -31,7 +30,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="grid place-items-center h-full p-10">
+    <main className="flex flex-col items-center justify-center min-h-screen p-10">
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
@@ -60,20 +59,24 @@ export default function Home() {
         </div>
       </Suspense>
 
-      <h1 className="text-2xl md:text-5xl font-extrabold text-center max-w-6xl pt-3">
+      <h1 className="flex text-2xl md:text-5xl font-extrabold text-center pt-3">
         Saving your favorite npm package since 1948.
       </h1>
 
-      <div className="w-5/6 py-5 flex justify-center items-center">
-        <TextBox />
-      </div>
-
-      <div className="flex flex-col md:flex-row gap-2 items-center">
-        <div className="flex-grow">
-          <NpmUpdate />
+      <div className="w-auto py-5 flex flex-col items-center">
+        <div className="flex-grow w-full">
+          <TextBox />
         </div>
-        <div className="flex-grow">
-          <MobileQr />
+
+        <div className="h-full flex flex-row md:flex-row gap-2 items-center">
+          <div className="">
+            <div className="flex-grow mb-5">
+              <NpmUpdate />
+            </div>
+            <div className="flex-grow my-[17px]">
+              <MobileQr />
+            </div>
+          </div>
         </div>
       </div>
     </main>

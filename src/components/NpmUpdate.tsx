@@ -78,10 +78,11 @@ export default function App() {
   return (
     <Card
       css={{
+        marginTop: "$6",
+        marginBottom: "$55",
         minWidth: "100%",
         width: "auto",
-        margin: "auto",
-        mh: "auto",
+        mh: "307px",
         fs: "$xl",
         whiteSpace: "nowrap",
         overflow: "hidden",
@@ -98,7 +99,7 @@ export default function App() {
           </Grid>
         </Grid.Container>
       </Card.Header>
-      <Card.Body css={{ py: "$2", fs: "11px" }}>
+      <Card.Body css={{ py: "$12", fs: "11px" }}>
         <Table
           aria-label="Example table with dynamic content"
           css={{

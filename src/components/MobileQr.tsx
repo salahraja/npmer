@@ -2,7 +2,6 @@ import { useState, useEffect, Key } from "react";
 import { Card, Grid, Text, Table, Spacer } from "@nextui-org/react";
 import "src/app/globals.css";
 import CopyButton from "./CopyButton";
-import NewRow from "./NewRow";
 
 interface RowItem {
   key: string;
@@ -74,10 +73,9 @@ export default function MobileQr() {
   return (
     <Card
       css={{
-        p: "$6",
         minWidth: "100%",
         width: "auto",
-        mh: "100%",
+        mh: "auto",
         fs: "$xl",
         whiteSpace: "nowrap",
         overflow: "hidden",
@@ -94,7 +92,7 @@ export default function MobileQr() {
           </Grid>
         </Grid.Container>
       </Card.Header>
-      <Card.Body css={{ py: "$2", fs: "11px" }}>
+      <Card.Body css={{ py: "$6", fs: "11px", height: "80%" }}>
         <Table
           aria-label="Example table with dynamic content"
           css={{

@@ -16,7 +16,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={theme?.value}>
-      <body className="bg-white text-black dark:bg-black dark:text-white transition duration-700 sm:text-red-500">
+      <body className="bg-white text-black dark:bg-black dark:text-white transition duration-700 ">
         {children}
       </body>
     </html>
