@@ -84,9 +84,14 @@ export default function MobileQr() {
     >
       <Spacer x={1} />
       <Card.Header>
-        <Grid.Container css={{ pl: "$6" }}>
+        <Grid.Container
+          css={{
+            pl: "$12",
+            justifyContent: "center", // Center the content horizontally
+          }}
+        >
           <Grid xs={12}>
-            <Text h4 css={{ lineHeight: "$xs" }}>
+            <Text h4 css={{ lineHeight: "$xs", textAlign: "center" }}>
               Access your localhost server on mobile.
             </Text>
           </Grid>

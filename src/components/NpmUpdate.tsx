@@ -81,8 +81,8 @@ export default function App() {
         marginTop: "$6",
         marginBottom: "$55",
         minWidth: "100%",
-        width: "auto",
-        mh: "307px",
+        width: "100%",
+        mh: "auto",
         fs: "$xl",
         whiteSpace: "nowrap",
         overflow: "hidden",
@@ -91,9 +91,14 @@ export default function App() {
     >
       <Spacer x={1} />
       <Card.Header>
-        <Grid.Container css={{ pl: "$6" }}>
+        <Grid.Container
+          css={{
+            pl: "$12",
+            justifyContent: "center", // Center the content horizontally
+          }}
+        >
           <Grid xs={12}>
-            <Text h4 css={{ lineHeight: "$xs" }}>
+            <Text h4 css={{ lineHeight: "$xs", textAlign: "center" }}>
               Update all your npm packages all at once!
             </Text>
           </Grid>

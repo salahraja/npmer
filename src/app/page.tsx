@@ -63,7 +63,7 @@ export default function Home() {
         Saving your favorite npm package since 1948.
       </h1>
 
-      <div className="w-auto py-5 flex flex-col items-center">
+      <div className=" text-red-500 py-5 flex flex-col items-center">
         <div className="flex-grow w-full">
           <TextBox />
         </div>
