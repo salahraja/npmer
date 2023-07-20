@@ -34,7 +34,15 @@ export default function Home() {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-
+      <div className="fixed mb-5 left-0 top-0 flex w-full justify-center border-b border-zinc-200 shadow-md bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
+        <code className="font-mono">
+          Under&nbsp; construction.
+          <p>
+            Due to my machine&apos;s limitations I cannot get my auth+db
+            implemented, apologies!
+          </p>
+        </code>
+      </div>
       <ThemeSwitcher theme={theme} />
 
       <div className="flex justify-center items-center w-full">
